@@ -4,10 +4,17 @@ import './JobCard.css'; // Import the CSS file
 import { HiClock } from "react-icons/hi2";
 import { SiLevelsdotfyi } from "react-icons/si";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom'
 
 export const JobCard = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/job-preview");
+  };
+
   return (
-    <div className="job-card">
+    <div className="job-card" onClick={handleClick}>
       <div className="job-card-header">
         <div className="job-card-logo">
           <img src="Jobmember.png" alt="Company Logo" className="job-card-logo-img" />

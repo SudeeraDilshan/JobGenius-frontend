@@ -7,6 +7,7 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import OpportunitiesPage from './pages/OpportunitiesPage'
 import HirePage from './pages/HirePage'
 import ProfilePage from './pages/ProfilePage'
+import JobPreviewPage from './pages/JobPreviewPage'
 import './App.css'
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/hire" element={<HirePage />} />
           <Route path="/opportunities" element={<OpportunitiesPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/job-preview" element={<JobPreviewPage />} />
         </Routes>
       </BrowserRouter>
     </div>
