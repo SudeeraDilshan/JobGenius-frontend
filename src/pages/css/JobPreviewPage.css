@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+.main-container{
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1200px;
+}
+.header{
+    display: flex;
+    gap:50px;
+    align-items: flex-end;
+}
+
+.header img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.header-info{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.header-info h2{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.header-info .tags{
+    display: flex;
+    gap: 10px;
+    padding-bottom:10px;
+}
+
+.tagonsite{
+    background-color: #6D60FF;
+    color: white;
+    border-radius: 20px;
+    padding: 3px 10px;
+    margin-right: 8px;
+    font-size: 12px;
+}
+
+.body{
+    display: flex;
+    flex-direction: row;
+}
+
+.body .left{
+    flex: 75%;
+    margin-right: 20px;
+    max-height:60vh;
+}
+
+.body .left .left-details{
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    margin-top: 20px;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.body .right{
+    flex: 25%;
+}
+
+.job-detail{
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: "Open Sans", sans-serif;
+}
+
+
+.right-content{
+    width: 300px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .apply-btn, .refer-btn {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .apply-btn {
+    background-color: #00c4cc;
+    color: white;
+  }
+  
+  .refer-btn {
+    background-color: #2b2b2b;
+    color: white;
+  }
+  
+  .apply-btn:hover {
+    background-color: #00a5a9;
+  }
+  
+  .refer-btn:hover {
+    background-color: #1e1e1e;
+  }
+  
+  .employer-info {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .employer-title {
+    font-size: 18px;
+    color: #2b2b2b;
+    margin-bottom: 10px;
+    border-left: 3px solid #00c4cc;
+    padding-left: 10px;
+  }
+  
+  .employer-info p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #444444;
+  }
