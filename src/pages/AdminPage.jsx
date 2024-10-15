@@ -10,8 +10,8 @@ const AdminPage = () => {
         <div className='admin-container'>
             <AdminSideBar />
             <Routes>
-                <Route path='/' element={<AddJobForm />} />
-                <Route path='/admin' element={<ViewJobsTable />} />
+                <Route path='add-job' element={<AddJobForm />} />
+                <Route path='' element={<ViewJobsTable />} />
             </Routes>
         </div>
     )

@@ -1,7 +1,7 @@
 .admin-container{
     display: flex;
     padding: 30px;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
-    gap:40px;
+    gap:50px;
 }

@@ -11,14 +11,14 @@ import {Navbar} from './components/Navbar/Navbar'
 
 const App = () => {
 
-  const [role,setRole] = useState('company');
+  const [role,setRole] = useState('h');
 
   return (
     <div>
        <BrowserRouter>
-        <Navbar />
+        <Navbar role={role}/>
         <Routes>
-          <Route path="/" element={role=="student" ?<JobListingPage />:<AdminPage/>} />
+          <Route path="/*" element={role=="student" ?<JobListingPage />:<AdminPage/>} />
           <Route path="/hire" element={<HirePage />} />
           <Route path="/opportunities" element={<OpportunitiesPage />} />
           <Route path="/profile/*" element={<ProfilePage />} />

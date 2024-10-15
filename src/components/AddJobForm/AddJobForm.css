@@ -1,7 +1,7 @@
 .form-container {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 100%;
     margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
@@ -55,4 +55,14 @@
     -moz-appearance: none;
     appearance: none;
     background: #fff;
+}
+
+.two-items{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.two-items .form-group{
+    width: 48%;
 }
