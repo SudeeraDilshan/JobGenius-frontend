@@ -22,10 +22,46 @@ const AddJobForm = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form data submitted:', formData);
-        // Process form submission here
+
+        // Prepare the API URL (assuming it's running on localhost:9090)
+        const apiUrl = "http://localhost:9090/api/jobs";
+
+        // Send a POST request to the Ballerina API
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData), // Convert formData object to JSON string
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.statusText}`);
+            }
+
+            const result = await response.json();
+            console.log('Job successfully added:', result);
+            alert("Job added successfully!");
+
+            // Optionally, you can reset the form here
+            setFormData({
+                position: '',
+                category: '',
+                engagement: '',
+                working_mode: '',
+                location: '',
+                salary: '',
+                description: '',
+                company: ''
+            });
+
+        } catch (error) {
+            console.error('There was an error!', error);
+            alert("Failed to add the job.");
+        }
     };
 
     return (
