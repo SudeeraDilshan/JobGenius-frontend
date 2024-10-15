@@ -66,4 +66,32 @@
     border-radius: 50%;
     object-fit: cover;
   }
+
+  .search-input{
+    padding: 5px 10px;
+    flex: 90%;
+    margin-left: 10px;
+    border: none;
+    outline: none;
+  }
+
+  .search-bar{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 400px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background: #f9f9f9; ;
+  }
+
+  .search-bar .icon{
+    color: #626262;
+    margin: 0 10px;
+    flex: 10%;
+  }
+  .search-bar .icon:hover{
+    cursor: pointer;
+  }
   

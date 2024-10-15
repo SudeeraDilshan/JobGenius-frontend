@@ -1,23 +1,25 @@
-.sidebar-profile {
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+.sidebar {
     width: 25%;
     background-color: #e0d4fa;
     padding: 10px;
     border: 2px solid #b8a8e7;
     border-radius: 10px;
-    height: 400px;
+    height: 200px;
   }
   
-  .sidebar-profile ul {
+  .sidebar ul {
     list-style-type: none;
     padding: 0;
   }
   
-  .sidebar-profile ul li {
+  .sidebar ul li {
     margin: 0;
     margin-bottom: 30px;
   }
   
-  .sidebar-profile ul li button {
+  .sidebar ul li button {
     width: 100%;
     padding: 10px;
     border: none;
@@ -30,6 +32,6 @@
     transition: background-color 0.3s;
   }
   
-  .sidebar-profile ul li button:hover {
+  .sidebar ul li button:hover {
     background-color: #b8a8e7;
   }

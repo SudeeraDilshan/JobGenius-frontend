@@ -7,7 +7,7 @@ const JobListingPage = () => {
   return (
     <div className="job-listing-page">
       {/* Sidebar */}
-      <div className="sidebar-container">
+      <div className="sidebar-container-filter">
         <FilterComponent />
       </div>
 
