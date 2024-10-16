@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom'
 import ViewJobsTable from '../components/ViewJobsTable/ViewJobsTable'
 
 const AdminPage = () => {
+    
     return (
         <div className='admin-container'>
             <AdminSideBar />
