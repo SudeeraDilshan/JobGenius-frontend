@@ -39,7 +39,7 @@ const AdminPage = () => {
          
     useEffect(() => {
 
-      fetchJobs("TechCore");
+      fetchJobs("BuildOps");
       }, []);
     
       if (loading) {
