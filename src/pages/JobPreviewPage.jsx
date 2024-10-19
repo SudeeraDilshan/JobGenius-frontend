@@ -1,12 +1,14 @@
 import React from 'react'
 import './css/JobPreviewPage.css'
 import { useLocation } from 'react-router-dom'
+// import { useParams } from 'react-router-dom'
 
 
 const JobPreviewPage = () => {
+    // const { jobId } = useParams();
     const location = useLocation();
     const { jobData } = location.state; // Access the passed data
-  
+
     return (
         <div className='main-container'>
             <div className="header">
@@ -39,15 +41,10 @@ const JobPreviewPage = () => {
                         </div>
                         <div className="job-offers">
                             <h3>Offers</h3>
-                            {/* <ul>
-                                <li>Flexible working options</li>
-                                <li>Opportunity to make a positive impact</li>
-                                <li>Professional growth and development opportunities</li>
-                            </ul> */}
-                                <ul>
-          {jobData.keypoints.split(',').map((perk, index) => (
-            <li key={index}>{perk.trim()}</li> // trim() to remove any extra spaces
-          ))}</ul>
+                            <ul>
+                                {jobData.keypoints.split(',').map((perk, index) => (
+                                    <li key={index}>{perk.trim()}</li> // trim() to remove any extra spaces
+                                ))}</ul>
                         </div>
                         <div className="job-description">
                             <h3>Job Description</h3>

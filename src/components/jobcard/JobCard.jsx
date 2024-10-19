@@ -9,7 +9,7 @@ export const JobCard = ({ job }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/job-preview", {
+    navigate(`/job-preview/${job.id}`, {
       state: { jobData: job }, // Pass your data as state
     });
   };

@@ -1,162 +1,58 @@
 import './ViewJobsTable.css';
 import React from 'react';
 
-const ViewJobsTable = () => {
+const ViewJobsTable = ({ Job_list,fetch_jobs}) => {
+    const deleteJob = async (id) => {
+        try {
+            const url = `http://localhost:9090/api/jobs/${encodeURIComponent(id)}`;
+            const response = await fetch(url, {
+                method: 'DELETE', 
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to delete the job');
+            }
+    
+            console.log(`Job with id ${id} deleted successfully`);
+            fetch_jobs("TechCore"); 
+        } catch (error) {
+            console.error('Error deleting the job:', error);
+        }
+    };
     return (
         <div className='container'>
             <h1>Job Management</h1>
             <div className="table-container">
-            <table>
-                <thead >
-                    <tr >
-                        <th>Position</th>
-                        <th>Category</th>
-                        <th>Engagement</th>
-                        <th>Working Mode</th>
-                        {/* <th>Location</th> */}
-                        <th>Salary</th>
-                        {/* <th>Description</th>
-                        <th>Company</th> */}
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* {jobs.map(job => (
-                        <tr key={job._id}>
-                            <td>{job.position}</td>
-                            <td>{job.category}</td>
-                            <td>{job.engagement}</td>
-                            <td>{job.working_mode}</td>
-                            <td>{job.location}</td>
-                            <td>{job.salary}</td>
-                            <td>{job.description}</td>
-                            <td>{job.company}</td>
-                            <td>
-                                <button onClick={() => deleteJob(job._id)}>Delete</button>
-                                <button onClick={() => updateJob(job._id, job)}>Edit</button>
-                            </td>
+                <table>
+                    <thead >
+                        <tr >
+                            <th>Position</th>
+                            <th>Category</th>
+                            <th>Engagement</th>
+                            <th>Working Mode</th>
+                            <th>Salary</th>
+                            <th>Actions</th>
                         </tr>
-                    ))} */}
-                    {[
-        {
-            _id: "1",
-            position: "Backend Developer",
-            category: "Software",
-            engagement: "Full-time",
-            working_mode: "Remote",
-            location: "New York",
-            salary: "$3200",
-            description: "Develop backend APIs",
-            company: "Tech Solutions"
-        },
-        {
-            _id: "2",
-            position: "Frontend Developer",
-            category: "Software",
-            engagement: "Part-time",
-            working_mode: "Hybrid",
-            location: "San Francisco",
-            salary: "$2800",
-            description: "Build UI components",
-            company: "Creative Labs"
-        },
-        {
-            _id: "3",
-            position: "Project Manager",
-            category: "Management",
-            engagement: "Contract",
-            working_mode: "Onsite",
-            location: "Los Angeles",
-            salary: "$5000",
-            description: "Manage projects and teams",
-            company: "Projectify"
-        },
-        {
-            _id: "1",
-            position: "Backend Developer",
-            category: "Software",
-            engagement: "Full-time",
-            working_mode: "Remote",
-            location: "New York",
-            salary: "$3200",
-            description: "Develop backend APIs",
-            company: "Tech Solutions"
-        },
-        {
-            _id: "2",
-            position: "Frontend Developer",
-            category: "Software",
-            engagement: "Part-time",
-            working_mode: "Hybrid",
-            location: "San Francisco",
-            salary: "$2800",
-            description: "Build UI components",
-            company: "Creative Labs"
-        },
-        {
-            _id: "3",
-            position: "Project Manager",
-            category: "Management",
-            engagement: "Contract",
-            working_mode: "Onsite",
-            location: "Los Angeles",
-            salary: "$5000",
-            description: "Manage projects and teams",
-            company: "Projectify"
-        },
-        {
-            _id: "1",
-            position: "Backend Developer",
-            category: "Software",
-            engagement: "Full-time",
-            working_mode: "Remote",
-            location: "New York",
-            salary: "$3200",
-            description: "Develop backend APIs",
-            company: "Tech Solutions"
-        },
-        {
-            _id: "2",
-            position: "Frontend Developer",
-            category: "Software",
-            engagement: "Part-time",
-            working_mode: "Hybrid",
-            location: "San Francisco",
-            salary: "$2800",
-            description: "Build UI components",
-            company: "Creative Labs"
-        },
-        {
-            _id: "3",
-            position: "Project Manager",
-            category: "Management",
-            engagement: "Contract",
-            working_mode: "Onsite",
-            location: "Los Angeles",
-            salary: "$5000",
-            description: "Manage projects and teams",
-            company: "Projectify"
-        }
-    ].map(job => (
-        <tr key={job._id}>
-            <td>{job.position}</td>
-            <td>{job.category}</td>
-            <td>{job.engagement}</td>
-            <td>{job.working_mode}</td>
-            {/* <td>{job.location}</td> */}
-            <td>{job.salary}</td>
-            {/* <td>{job.description}</td>
-            <td>{job.company}</td> */}
-            <td>
-                <button onClick={() => console.log('Delete', job._id)} className='delete-button'>Delete</button>
-                <button onClick={() => console.log('Edit', job._id)}>Edit</button>
-            </td>
-        </tr>
-    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {
+                            Job_list.map(job => (
+                                <tr key={job.id}>
+                                    <td>{job.position}</td>
+                                    <td>{job.category}</td>
+                                    <td>{job.engagement}</td>
+                                    <td>{job.working_mode}</td>
+                                    <td>{job.salary}</td>
+                                    <td>
+                                        <button onClick={() => deleteJob(job.id)} className='delete-button'>Delete</button>
+                                        <button onClick={() => console.log('Edit', job.id)}>Edit</button>
+                                    </td>
+                                </tr>
+                            ))}
+                    </tbody>
+                </table>
             </div>
-          
+
         </div>
     )
 }
