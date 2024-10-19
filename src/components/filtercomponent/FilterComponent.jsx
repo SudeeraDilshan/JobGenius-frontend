@@ -8,7 +8,7 @@ import { IoLocation } from "react-icons/io5";
 import { HiMiniBuildingOffice2 } from "react-icons/hi2";
 import { TbMilitaryRank } from "react-icons/tb";
 
-export const FilterComponent = ({getQueryFromFilter}) => {
+export const FilterComponent = ({ getQueryFromFilter }) => {
   const [isCategoryOpen, setCategoryOpen] = useState(false);
   const [isWorkingModeOpen, setWorkingModeOpen] = useState(false);
   const [isJobEngagementOpen, setJobEngagementOpen] = useState(false);
@@ -87,6 +87,17 @@ export const FilterComponent = ({getQueryFromFilter}) => {
     company: ""
   });
 
+  const resetFilters = () => {
+    setFilters({
+      category: [],
+      position: [],
+      working_mode: [],
+      engagement: [],
+      location: "",
+      company: ""
+    });
+  };
+
   const handleCheckboxChange = (section, value) => {
     setFilters(prevFilters => {
       const updatedValues = prevFilters[section].includes(value)
@@ -112,24 +123,24 @@ export const FilterComponent = ({getQueryFromFilter}) => {
     const makeQuery = () => {
       try {
         let query = [];
-    
+
         if (filters.category.length) query.push(`category=${filters.category.join(',')}`);
         if (filters.position.length) query.push(`position=${filters.position.join(',')}`);
         if (filters.working_mode.length) query.push(`working_mode=${filters.working_mode.join(',')}`);
         if (filters.engagement.length) query.push(`engagement=${filters.engagement.join(',')}`);
         if (filters.location) query.push(`location=${filters.location}`);
         if (filters.company) query.push(`company=${filters.company}`);
-    
+
         const finalQuery = query.join('&');
-    
+
         getQueryFromFilter(finalQuery);
         console.log(finalQuery);
-        
+
       } catch (error) {
         console.error('Error making query:', error);
       }
     };
-    
+
 
     makeQuery();
   }, [filters]);
@@ -138,7 +149,7 @@ export const FilterComponent = ({getQueryFromFilter}) => {
     <div className="filter-card">
       <div className="filter-header">
         <span>Filter</span>
-        <button className="reset-button">
+        <button className="reset-button" onClick={resetFilters}>
           <IoMdRefresh />
         </button>
       </div>
@@ -219,7 +230,7 @@ export const FilterComponent = ({getQueryFromFilter}) => {
                 checked={filters.working_mode.includes('Hybrid')}
               />  Hybrid</label>
 
-<label>
+            <label>
               <input
                 type="checkbox"
                 onChange={() => handleCheckboxChange('working_mode', 'Remote')}
@@ -298,7 +309,7 @@ export const FilterComponent = ({getQueryFromFilter}) => {
           >
             <option value="" >Select a company</option>
             <option value="TechCore">TechCore</option>
-            <option value="CloudMatrix">CloudMatrix</option>
+            <option value="FrontEndTech">FrontEndTech</option>
             <option value="SEOPros">SEOPros</option>
           </select>
         )}
