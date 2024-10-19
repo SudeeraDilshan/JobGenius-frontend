@@ -4,9 +4,8 @@
     align-items: center;
     height: 100vh; 
      width: 100%;
-    /* background-color: rgba(35, 77, 243, 0.5); */
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000; */
+    z-index: 1000; 
 }
