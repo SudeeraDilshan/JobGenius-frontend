@@ -11,7 +11,7 @@ import {Navbar} from './components/Navbar/Navbar'
 
 const App = () => {
 
-  const [role,setRole] = useState('h');
+  const [role,setRole] = useState('hh');
 
   return (
     <div>
@@ -22,7 +22,7 @@ const App = () => {
           <Route path="/hire" element={<HirePage />} />
           <Route path="/opportunities" element={<OpportunitiesPage />} />
           <Route path="/profile/*" element={<ProfilePage />} />
-          <Route path="/job-preview" element={<JobPreviewPage />} />
+          <Route path="/job-preview/:jobId" element={<JobPreviewPage />} />
         </Routes>
       </BrowserRouter> 
     </div>

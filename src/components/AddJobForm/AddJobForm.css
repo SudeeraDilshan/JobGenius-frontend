@@ -66,3 +66,7 @@
 .two-items .form-group{
     width: 48%;
 }
+
+.form-group .keypoints-textarea{
+    height: 50px;
+}

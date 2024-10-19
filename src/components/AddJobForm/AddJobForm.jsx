@@ -2,25 +2,36 @@ import './AddJobForm.css';
 import { useState } from 'react';
 import React from 'react'
 
-const AddJobForm = () => {
+const AddJobForm = ({ fetch_jobs }) => {
     const [formData, setFormData] = useState({
         position: '',
         category: '',
         engagement: '',
         working_mode: '',
         location: '',
-        salary: '',
+        salary: 0,
         description: '',
-        company: ''
+        company: '',
+        experience: '',
+        keypoints: ''
     });
+
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setFormData({
+    //         ...formData,
+    //         [name]: value
+    //     });
+    // };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: value
+            [name]: name === "salary" ? parseInt(value) : value, // Ensure salary is stored as an integer
         });
     };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -53,10 +64,14 @@ const AddJobForm = () => {
                 engagement: '',
                 working_mode: '',
                 location: '',
-                salary: '',
+                salary: 0,
                 description: '',
-                company: ''
+                company: '',
+                experience: '',
+                keypoints: ''
             });
+
+            fetch_jobs("TechCore"); // Fetch the jobs again to update the list
 
         } catch (error) {
             console.error('There was an error!', error);
@@ -138,13 +153,23 @@ const AddJobForm = () => {
                 <div className="form-group">
                     <label>Salary:</label>
                     <input
-                        type="text"
+                        type="number"
                         name="salary"
-                        value={formData.salary}
+                        value={parseInt(formData.salary)}
                         onChange={handleChange}
                         required
                     />
                 </div>
+            </div>
+
+            <div className="form-group">
+                <label>Keypoints:</label>
+                <textarea className='keypoints-textarea'
+                    name="keypoints"
+                    value={formData.keypoints}
+                    onChange={handleChange}
+                    required
+                />
             </div>
 
             <div className="form-group">
@@ -157,15 +182,27 @@ const AddJobForm = () => {
                 />
             </div>
 
-            <div className="form-group">
-                <label>Company:</label>
-                <input
-                    type="text"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    required
-                />
+            <div className="two-items">
+                <div className="form-group">
+                    <label>Experience:</label>
+                    <input
+                        type="text"
+                        name="experience"
+                        value={formData.experience}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Company:</label>
+                    <input
+                        type="text"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
             </div>
 
             <button type="submit" className="submit-button">Submit</button>
