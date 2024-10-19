@@ -14,7 +14,7 @@ const ViewJobsTable = ({ Job_list,fetch_jobs}) => {
             }
     
             console.log(`Job with id ${id} deleted successfully`);
-            fetch_jobs("TechCore"); 
+            fetch_jobs("BuildOps"); 
         } catch (error) {
             console.error('Error deleting the job:', error);
         }

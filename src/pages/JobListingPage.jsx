@@ -5,23 +5,32 @@ import { JobCard } from '../components/jobcard/JobCard';
 
 const JobListingPage = () => {
   const [jobs, setJobs] = useState([]); 
+  const [query,setQuery] = useState('');
+  const [checkedFetched, setCheckedFetched] = useState(false);
   const [loading, setLoading] = useState(true);
+  
+  const getQuery = (query) => {
+    setQuery(query); 
+  };
 
   
   useEffect(() => {
+
     const fetchJobs = async () => {
-      try {
-        const response = await fetch('http://localhost:9090/api/jobs');
-        const data = await response.json();
-        setJobs(data); // Set the fetched jobs into state
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching jobs:', error);
-        setLoading(false);
-      }
-    };
-    fetchJobs();
-  }, []);
+     try {
+         const response = await fetch(`http://localhost:9090/api/jobs?${query}`);
+         const data = await response.json();
+         setJobs(data);
+      
+     } catch (error) {
+       console.log("failed to fetch jobs :",error);
+     }
+     finally {
+       setLoading(false);
+     }
+
+  };
+  fetchJobs();}, [query]);
 
   if (loading) {
     return <p>Loading jobs...</p>;
@@ -30,7 +39,7 @@ const JobListingPage = () => {
     <div className="job-listing-page">
 
       <div className="sidebar-container-filter">
-        <FilterComponent />
+        <FilterComponent getQueryFromFilter={getQuery} />
       </div>
 
 

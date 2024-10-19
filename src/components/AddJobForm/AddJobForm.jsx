@@ -16,14 +16,6 @@ const AddJobForm = ({ fetch_jobs }) => {
         keypoints: ''
     });
 
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setFormData({
-    //         ...formData,
-    //         [name]: value
-    //     });
-    // };
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -71,7 +63,7 @@ const AddJobForm = ({ fetch_jobs }) => {
                 keypoints: ''
             });
 
-            fetch_jobs("TechCore"); // Fetch the jobs again to update the list
+            fetch_jobs("BuildOps"); // Fetch the jobs again to update the list
 
         } catch (error) {
             console.error('There was an error!', error);
