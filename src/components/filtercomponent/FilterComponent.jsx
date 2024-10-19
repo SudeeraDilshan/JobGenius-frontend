@@ -22,21 +22,52 @@ export const FilterComponent = () => {
     switch (section) {
       case 'category':
         setCategoryOpen(!isCategoryOpen);
+        setWorkingModeOpen(false);
+        setJobEngagementOpen(false);
+        setLocationOpen(false);
+        setCompanyOpen(false);
+        setPositionOpen(false);
+        
         break;
       case 'workingMode':
         setWorkingModeOpen(!isWorkingModeOpen);
+        setCategoryOpen(false);
+        setJobEngagementOpen(false);
+        setLocationOpen(false);
+        setCompanyOpen(false);
+        setPositionOpen(false);
         break;
       case 'jobEngagement':
         setJobEngagementOpen(!isJobEngagementOpen);
+        setCategoryOpen(false);
+        setWorkingModeOpen(false);
+        setLocationOpen(false);
+        setCompanyOpen(false);
+        setPositionOpen(false);
         break;
       case 'location':
         setLocationOpen(!isLocationOpen);
+        setCategoryOpen(false);
+        setWorkingModeOpen(false);
+        setJobEngagementOpen(false);
+        setCompanyOpen(false);
+        setPositionOpen(false);
         break;
       case 'company':
         setCompanyOpen(!isCompanyOpen);
+        setCategoryOpen(false);
+        setWorkingModeOpen(false);
+        setJobEngagementOpen(false);
+        setLocationOpen(false);
+        setPositionOpen(false);
         break;
       case 'position':
         setPositionOpen(!isPositionOpen);
+        setCategoryOpen(false);
+        setWorkingModeOpen(false);
+        setJobEngagementOpen(false);
+        setLocationOpen(false);
+        setCompanyOpen(false);
       default:
         break;
     }
