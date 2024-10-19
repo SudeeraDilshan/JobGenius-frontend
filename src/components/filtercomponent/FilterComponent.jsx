@@ -164,18 +164,49 @@ export const FilterComponent = ({ getQueryFromFilter }) => {
             <label>
               <input
                 type="checkbox"
-                onChange={() => handleCheckboxChange('category', 'Technical Writing')}
-                checked={filters.category.includes('Technical Writing')} />
+                onChange={() => handleCheckboxChange('category', 'IT Security')}
+                checked={filters.category.includes('IT Security')} />
 
-              Technical Writing</label>
+IT Security</label>
 
             <label>
               <input
                 type="checkbox"
-                onChange={() => handleCheckboxChange('category', 'Software Engineering')}
-                checked={filters.category.includes('Software Engineering')}
+                onChange={() => handleCheckboxChange('category', 'Software Development')}
+                checked={filters.category.includes('Software Development')}
               />
-              Software Engineering</label>
+              Software Development</label>
+
+              <label>
+              <input
+                type="checkbox"
+                onChange={() => handleCheckboxChange('category', 'Database Management')}
+                checked={filters.category.includes('Database Management')}
+              />
+              Database Management</label>
+
+              <label>
+              <input
+                type="checkbox"
+                onChange={() => handleCheckboxChange('category', 'Data Science')}
+                checked={filters.category.includes('Data Science')}
+              />
+              Data Science</label>
+              <label>
+              <input
+                type="checkbox"
+                onChange={() => handleCheckboxChange('category', 'Mobile Development')}
+                checked={filters.category.includes('Mobile Development')}
+              />
+              Mobile Development</label>
+
+              <label>
+              <input
+                type="checkbox"
+                onChange={() => handleCheckboxChange('category', 'Digital Marketing')}
+                checked={filters.category.includes('Digital Marketing')}
+              />
+              Digital Marketing</label>
           </div>
         )}
       </div>
@@ -189,15 +220,48 @@ export const FilterComponent = ({ getQueryFromFilter }) => {
             <label>
               <input
                 type="checkbox"
+                onChange={() => handleCheckboxChange('position', 'Mobile App Developer')}
+                checked={filters.position.includes('Mobile App Developer')}
+              /> Mobile App Developer
+            </label>
+
+            <label>
+              <input type="checkbox"
+                onChange={() => handleCheckboxChange('position', 'System Analyst')}
+                checked={filters.position.includes('System Analyst')}
+              />System Analyst</label>
+
+<label>
+              <input
+                type="checkbox"
                 onChange={() => handleCheckboxChange('position', 'Frontend Developer')}
                 checked={filters.position.includes('Frontend Developer')}
               /> Frontend Developer
             </label>
+
             <label>
-              <input type="checkbox"
-                onChange={() => handleCheckboxChange('position', 'Blockchain Developer')}
-                checked={filters.position.includes('Blockchain Developer')}
-              />Blockchain Developer</label>
+              <input
+                type="checkbox"
+                onChange={() => handleCheckboxChange('position', 'Network Engineer')}
+                checked={filters.position.includes('Network Engineer')}
+              /> Network Engineer
+            </label>
+
+            <label>
+              <input
+                type="checkbox"
+                onChange={() => handleCheckboxChange('position', 'DevOps Engineer')}
+                checked={filters.position.includes('DevOps Engineer')}
+              /> DevOps Engineer
+            </label>
+
+            <label>
+              <input
+                type="checkbox"
+                onChange={() => handleCheckboxChange('position', 'Full-Stack Developer')}
+                checked={filters.position.includes('Full-Stack Developer')}
+              /> Full-Stack Developer
+            </label>
           </div>
         )}
       </div>
@@ -289,8 +353,8 @@ export const FilterComponent = ({ getQueryFromFilter }) => {
           >
             <option value="" >Select a location</option>
             <option value="Colombo">Colombo</option>
-            <option value="Galle">Galle</option>
-            <option value="Chicago">Chicago</option>
+            <option value="Kandy">Kandy</option>
+            <option value="Negombo">Negombo</option>
           </select>
         )}
 
@@ -308,9 +372,12 @@ export const FilterComponent = ({ getQueryFromFilter }) => {
             onChange={(e) => handleSelectChange('company', e.target.value)}
           >
             <option value="" >Select a company</option>
-            <option value="TechCore">TechCore</option>
-            <option value="FrontEndTech">FrontEndTech</option>
-            <option value="SEOPros">SEOPros</option>
+            <option value="CyberGuard">CyberGuard</option>
+            <option value="Web Innovations">Web Innovations</option>
+            <option value="SecureTech">SecureTech</option>
+            <option value="Data Solution">Data Solution</option>
+            <option value="Network Solutions">Network Solutions</option>
+            <option value="Cloud Solutions">Cloud Solutions</option>
           </select>
         )}
 

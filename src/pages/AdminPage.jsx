@@ -4,6 +4,7 @@ import AdminSideBar from '../components/SideBarAdmin/SideBarAdmin'
 import AddJobForm from '../components/AddJobForm/AddJobForm'
 import { Routes, Route } from 'react-router-dom'
 import ViewJobsTable from '../components/ViewJobsTable/ViewJobsTable'
+import Loading from '../components/Loading/Loading'
 
 const AdminPage = () => {
 
@@ -43,7 +44,7 @@ const AdminPage = () => {
       }, []);
     
       if (loading) {
-        return <p>Loading jobs...</p>;
+        return <Loading />;
       }
     
     return (

@@ -11,7 +11,7 @@ import {Navbar} from './components/Navbar/Navbar'
 
 const App = () => {
 
-  const [role,setRole] = useState('ii');
+  const [role,setRole] = useState('student');
 
   return (
     <div>

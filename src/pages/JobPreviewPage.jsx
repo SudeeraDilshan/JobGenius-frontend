@@ -1,13 +1,11 @@
 import React from 'react'
 import './css/JobPreviewPage.css'
 import { useLocation } from 'react-router-dom'
-// import { useParams } from 'react-router-dom'
-
 
 const JobPreviewPage = () => {
-    // const { jobId } = useParams();
+
     const location = useLocation();
-    const { jobData } = location.state; // Access the passed data
+    const { jobData } = location.state; 
 
     return (
         <div className='main-container'>

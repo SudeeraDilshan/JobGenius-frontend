@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './css/JobListingPage.css'
 import { FilterComponent } from '../components/filtercomponent/FilterComponent';
 import { JobCard } from '../components/jobcard/JobCard';
+import  Loading  from '../components/Loading/Loading';
 
 const JobListingPage = () => {
   const [jobs, setJobs] = useState([]); 
   const [query,setQuery] = useState('');
-  const [checkedFetched, setCheckedFetched] = useState(false);
   const [loading, setLoading] = useState(true);
   
   const getQuery = (query) => {
@@ -33,7 +33,7 @@ const JobListingPage = () => {
   fetchJobs();}, [query]);
 
   if (loading) {
-    return <p>Loading jobs...</p>;
+    return <Loading />;
   }
   return (
     <div className="job-listing-page">
