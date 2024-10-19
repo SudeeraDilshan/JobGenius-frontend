@@ -28,7 +28,7 @@ export const FilterComponent = ({getQueryFromFilter}) => {
         setPositionOpen(false);
         break;
 
-      case 'workingMode':
+      case 'working_mode':
         setWorkingModeOpen(!isWorkingModeOpen);
         setCategoryOpen(false);
         setJobEngagementOpen(false);
@@ -37,7 +37,7 @@ export const FilterComponent = ({getQueryFromFilter}) => {
         setPositionOpen(false);
         break;
 
-      case 'jobEngagement':
+      case 'engagement':
         setJobEngagementOpen(!isJobEngagementOpen);
         setCategoryOpen(false);
         setWorkingModeOpen(false);
@@ -81,8 +81,8 @@ export const FilterComponent = ({getQueryFromFilter}) => {
   const [filters, setFilters] = useState({
     category: [],
     position: [],
-    workingMode: [],
-    jobEngagement: [],
+    working_mode: [],
+    engagement: [],
     location: "",
     company: ""
   });
@@ -110,24 +110,26 @@ export const FilterComponent = ({getQueryFromFilter}) => {
 
   useEffect(() => {
     const makeQuery = () => {
-
       try {
-        const query = new URLSearchParams();
-
-        if (filters.category.length) query.append("category", filters.category);
-        if (filters.position.length) query.append("position", filters.position);
-        if (filters.workingMode.length) query.append("working_mode", filters.workingMode);
-        if (filters.jobEngagement.length) query.append("engagement", filters.jobEngagement);
-        if (filters.location) query.append("location", filters.location);
-        if (filters.company) query.append("company", filters.company);
-
-  
-        getQueryFromFilter(query.toString());
-
+        let query = [];
+    
+        if (filters.category.length) query.push(`category=${filters.category.join(',')}`);
+        if (filters.position.length) query.push(`position=${filters.position.join(',')}`);
+        if (filters.working_mode.length) query.push(`working_mode=${filters.working_mode.join(',')}`);
+        if (filters.engagement.length) query.push(`engagement=${filters.engagement.join(',')}`);
+        if (filters.location) query.push(`location=${filters.location}`);
+        if (filters.company) query.push(`company=${filters.company}`);
+    
+        const finalQuery = query.join('&');
+    
+        getQueryFromFilter(finalQuery);
+        console.log(finalQuery);
+        
       } catch (error) {
         console.error('Error making query:', error);
-      } 
+      }
     };
+    
 
     makeQuery();
   }, [filters]);
@@ -191,7 +193,7 @@ export const FilterComponent = ({getQueryFromFilter}) => {
 
       {/* Working Mode Section */}
       <div className="filter-section">
-        <div className="filter-criteria" onClick={() => toggleSection('workingMode')}>
+        <div className="filter-criteria" onClick={() => toggleSection('working_mode')}>
           <FaSearchLocation /><h3>Working Mode</h3>
         </div>
         {isWorkingModeOpen && (
@@ -199,30 +201,38 @@ export const FilterComponent = ({getQueryFromFilter}) => {
             <label>
               <input
                 type="checkbox"
-                onChange={() => handleCheckboxChange('workingMode', 'Onsite')}
-                checked={filters.workingMode.includes('Onsite')}
+                onChange={() => handleCheckboxChange('working_mode', 'Onsite')}
+                checked={filters.working_mode.includes('Onsite')}
               />  Onsite</label>
 
             <label>
               <input
                 type="checkbox"
-                onChange={() => handleCheckboxChange('workingMode', 'Online')}
-                checked={filters.workingMode.includes('Online')}
+                onChange={() => handleCheckboxChange('working_mode', 'Online')}
+                checked={filters.working_mode.includes('Online')}
               />  Online</label>
 
             <label>
               <input
                 type="checkbox"
-                onChange={() => handleCheckboxChange('workingMode', 'Hybrid')}
-                checked={filters.workingMode.includes('Hybrid')}
+                onChange={() => handleCheckboxChange('working_mode', 'Hybrid')}
+                checked={filters.working_mode.includes('Hybrid')}
               />  Hybrid</label>
+
+<label>
+              <input
+                type="checkbox"
+                onChange={() => handleCheckboxChange('working_mode', 'Remote')}
+                checked={filters.working_mode.includes('Remote')}
+              />  Remote</label>
+
           </div>
         )}
       </div>
 
       {/* Job Engagement Section */}
       <div className="filter-section">
-        <div className="filter-criteria" onClick={() => toggleSection('jobEngagement')}>
+        <div className="filter-criteria" onClick={() => toggleSection('engagement')}>
           <RxLapTimer /><h3>Job Engagement</h3>
         </div>
         {isJobEngagementOpen && (
@@ -230,17 +240,25 @@ export const FilterComponent = ({getQueryFromFilter}) => {
             <label>
               <input
                 type="checkbox"
-                onChange={() => handleCheckboxChange('jobEngagement', 'Part Time')}
-                checked={filters.jobEngagement.includes('Part Time')}
+                onChange={() => handleCheckboxChange('engagement', 'Part-time')}
+                checked={filters.engagement.includes('Part-time')}
               />  Part Time
             </label>
 
             <label>
               <input
                 type="checkbox"
-                onChange={() => handleCheckboxChange('jobEngagement', 'Full Time')}
-                checked={filters.jobEngagement.includes('Full Time')}
+                onChange={() => handleCheckboxChange('engagement', 'Full-time')}
+                checked={filters.engagement.includes('Full-time')}
               /> Full Time
+            </label>
+
+            <label>
+              <input
+                type="checkbox"
+                onChange={() => handleCheckboxChange('engagement', 'Contract')}
+                checked={filters.engagement.includes('Contract')}
+              /> Contract
             </label>
           </div>
         )}
@@ -258,10 +276,10 @@ export const FilterComponent = ({getQueryFromFilter}) => {
             value={filters.location}
             onChange={(e) => handleSelectChange('location', e.target.value)}
           >
-            <option value="" disabled>Select a location</option>
+            <option value="" >Select a location</option>
             <option value="Colombo">Colombo</option>
             <option value="Galle">Galle</option>
-            <option value="Trinco">Trincomalee</option>
+            <option value="Chicago">Chicago</option>
           </select>
         )}
 
@@ -278,10 +296,10 @@ export const FilterComponent = ({getQueryFromFilter}) => {
             value={filters.company}
             onChange={(e) => handleSelectChange('company', e.target.value)}
           >
-            <option value="" disabled>Select a company</option>
+            <option value="" >Select a company</option>
             <option value="TechCore">TechCore</option>
             <option value="CloudMatrix">CloudMatrix</option>
-            <option value="AppSmiths">AppSmiths</option>
+            <option value="SEOPros">SEOPros</option>
           </select>
         )}
 
