@@ -2,7 +2,7 @@ import './AddJobForm.css';
 import { useState } from 'react';
 import React from 'react'
 
-const AddJobForm = ({ fetch_jobs }) => {
+const AddJobForm = ({ fetch_jobs,base64Credentials }) => {
     const [formData, setFormData] = useState({
         position: '',
         category: '',
@@ -29,7 +29,7 @@ const AddJobForm = ({ fetch_jobs }) => {
         e.preventDefault();
 
         // Prepare the API URL (assuming it's running on localhost:9090)
-        const apiUrl = "http://localhost:9090/api/jobs";
+        const apiUrl = "http://localhost:8080/api/jobs";
 
         // Send a POST request to the Ballerina API
         try {
@@ -37,6 +37,7 @@ const AddJobForm = ({ fetch_jobs }) => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Basic ${base64Credentials}` // Include Authorization header
                 },
                 body: JSON.stringify(formData), // Convert formData object to JSON string
             });

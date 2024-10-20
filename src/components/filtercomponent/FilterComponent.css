@@ -66,7 +66,7 @@
   .filter-options {
     display: flex;
     flex-direction: column;
-    margin-left: 25px;
+    margin-left: 20px;
   }
   
   .filter-options label {

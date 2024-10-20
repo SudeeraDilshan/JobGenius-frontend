@@ -8,7 +8,7 @@ import { IoLocation } from "react-icons/io5";
 import { HiMiniBuildingOffice2 } from "react-icons/hi2";
 import { TbMilitaryRank } from "react-icons/tb";
 
-export const FilterComponent = ({getQueryFromFilter}) => {
+export const FilterComponent = ({ getQueryFromFilter }) => {
   const [isCategoryOpen, setCategoryOpen] = useState(false);
   const [isWorkingModeOpen, setWorkingModeOpen] = useState(false);
   const [isJobEngagementOpen, setJobEngagementOpen] = useState(false);
@@ -87,6 +87,17 @@ export const FilterComponent = ({getQueryFromFilter}) => {
     company: ""
   });
 
+  const resetFilters = () => {
+    setFilters({
+      category: [],
+      position: [],
+      working_mode: [],
+      engagement: [],
+      location: "",
+      company: ""
+    });
+  };
+
   const handleCheckboxChange = (section, value) => {
     setFilters(prevFilters => {
       const updatedValues = prevFilters[section].includes(value)
@@ -112,24 +123,24 @@ export const FilterComponent = ({getQueryFromFilter}) => {
     const makeQuery = () => {
       try {
         let query = [];
-    
+
         if (filters.category.length) query.push(`category=${filters.category.join(',')}`);
         if (filters.position.length) query.push(`position=${filters.position.join(',')}`);
         if (filters.working_mode.length) query.push(`working_mode=${filters.working_mode.join(',')}`);
         if (filters.engagement.length) query.push(`engagement=${filters.engagement.join(',')}`);
         if (filters.location) query.push(`location=${filters.location}`);
         if (filters.company) query.push(`company=${filters.company}`);
-    
+
         const finalQuery = query.join('&');
-    
+
         getQueryFromFilter(finalQuery);
         console.log(finalQuery);
-        
+
       } catch (error) {
         console.error('Error making query:', error);
       }
     };
-    
+
 
     makeQuery();
   }, [filters]);
@@ -138,7 +149,7 @@ export const FilterComponent = ({getQueryFromFilter}) => {
     <div className="filter-card">
       <div className="filter-header">
         <span>Filter</span>
-        <button className="reset-button">
+        <button className="reset-button" onClick={resetFilters}>
           <IoMdRefresh />
         </button>
       </div>
@@ -153,18 +164,49 @@ export const FilterComponent = ({getQueryFromFilter}) => {
             <label>
               <input
                 type="checkbox"
-                onChange={() => handleCheckboxChange('category', 'Technical Writing')}
-                checked={filters.category.includes('Technical Writing')} />
+                onChange={() => handleCheckboxChange('category', 'IT Security')}
+                checked={filters.category.includes('IT Security')} />
 
-              Technical Writing</label>
+IT Security</label>
 
             <label>
               <input
                 type="checkbox"
-                onChange={() => handleCheckboxChange('category', 'Software Engineering')}
-                checked={filters.category.includes('Software Engineering')}
+                onChange={() => handleCheckboxChange('category', 'Software Development')}
+                checked={filters.category.includes('Software Development')}
               />
-              Software Engineering</label>
+              Software Development</label>
+
+              <label>
+              <input
+                type="checkbox"
+                onChange={() => handleCheckboxChange('category', 'Database Management')}
+                checked={filters.category.includes('Database Management')}
+              />
+              Database Management</label>
+
+              <label>
+              <input
+                type="checkbox"
+                onChange={() => handleCheckboxChange('category', 'Data Science')}
+                checked={filters.category.includes('Data Science')}
+              />
+              Data Science</label>
+              <label>
+              <input
+                type="checkbox"
+                onChange={() => handleCheckboxChange('category', 'Mobile Development')}
+                checked={filters.category.includes('Mobile Development')}
+              />
+              Mobile Development</label>
+
+              <label>
+              <input
+                type="checkbox"
+                onChange={() => handleCheckboxChange('category', 'Digital Marketing')}
+                checked={filters.category.includes('Digital Marketing')}
+              />
+              Digital Marketing</label>
           </div>
         )}
       </div>
@@ -178,15 +220,48 @@ export const FilterComponent = ({getQueryFromFilter}) => {
             <label>
               <input
                 type="checkbox"
+                onChange={() => handleCheckboxChange('position', 'Mobile App Developer')}
+                checked={filters.position.includes('Mobile App Developer')}
+              /> Mobile App Developer
+            </label>
+
+            <label>
+              <input type="checkbox"
+                onChange={() => handleCheckboxChange('position', 'System Analyst')}
+                checked={filters.position.includes('System Analyst')}
+              />System Analyst</label>
+
+<label>
+              <input
+                type="checkbox"
                 onChange={() => handleCheckboxChange('position', 'Frontend Developer')}
                 checked={filters.position.includes('Frontend Developer')}
               /> Frontend Developer
             </label>
+
             <label>
-              <input type="checkbox"
-                onChange={() => handleCheckboxChange('position', 'Blockchain Developer')}
-                checked={filters.position.includes('Blockchain Developer')}
-              />Blockchain Developer</label>
+              <input
+                type="checkbox"
+                onChange={() => handleCheckboxChange('position', 'Network Engineer')}
+                checked={filters.position.includes('Network Engineer')}
+              /> Network Engineer
+            </label>
+
+            <label>
+              <input
+                type="checkbox"
+                onChange={() => handleCheckboxChange('position', 'DevOps Engineer')}
+                checked={filters.position.includes('DevOps Engineer')}
+              /> DevOps Engineer
+            </label>
+
+            <label>
+              <input
+                type="checkbox"
+                onChange={() => handleCheckboxChange('position', 'Full-Stack Developer')}
+                checked={filters.position.includes('Full-Stack Developer')}
+              /> Full-Stack Developer
+            </label>
           </div>
         )}
       </div>
@@ -219,7 +294,7 @@ export const FilterComponent = ({getQueryFromFilter}) => {
                 checked={filters.working_mode.includes('Hybrid')}
               />  Hybrid</label>
 
-<label>
+            <label>
               <input
                 type="checkbox"
                 onChange={() => handleCheckboxChange('working_mode', 'Remote')}
@@ -278,8 +353,8 @@ export const FilterComponent = ({getQueryFromFilter}) => {
           >
             <option value="" >Select a location</option>
             <option value="Colombo">Colombo</option>
-            <option value="Galle">Galle</option>
-            <option value="Chicago">Chicago</option>
+            <option value="Kandy">Kandy</option>
+            <option value="Negombo">Negombo</option>
           </select>
         )}
 
@@ -297,9 +372,12 @@ export const FilterComponent = ({getQueryFromFilter}) => {
             onChange={(e) => handleSelectChange('company', e.target.value)}
           >
             <option value="" >Select a company</option>
-            <option value="TechCore">TechCore</option>
-            <option value="CloudMatrix">CloudMatrix</option>
-            <option value="SEOPros">SEOPros</option>
+            <option value="CyberGuard">CyberGuard</option>
+            <option value="Web Innovations">Web Innovations</option>
+            <option value="SecureTech">SecureTech</option>
+            <option value="Data Solution">Data Solution</option>
+            <option value="Network Solutions">Network Solutions</option>
+            <option value="Cloud Solutions">Cloud Solutions</option>
           </select>
         )}
 

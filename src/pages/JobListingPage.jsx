@@ -2,44 +2,85 @@ import React, { useState, useEffect } from 'react';
 import './css/JobListingPage.css'
 import { FilterComponent } from '../components/filtercomponent/FilterComponent';
 import { JobCard } from '../components/jobcard/JobCard';
+import Loading from '../components/Loading/Loading';
+import { ChatBox } from '../components/ChatBox/ChatBox';
 
-const JobListingPage = () => {
-  const [jobs, setJobs] = useState([]); 
-  const [query,setQuery] = useState('');
-  const [checkedFetched, setCheckedFetched] = useState(false);
+const JobListingPage = ({ base64Credentials }) => {
+  const [jobs, setJobs] = useState([]);
+  const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(true);
-  
+  const [chatBox, setChatBox] = useState(false);
+  const [textAreaValue, setTextAreaValue] = useState("");
+
+  const textAreaQuery = (query) => {
+    setTextAreaValue(query);
+  }
+
   const getQuery = (query) => {
-    setQuery(query); 
+    setQuery(query);
   };
 
-  
+
   useEffect(() => {
 
     const fetchJobs = async () => {
-     try {
-         const response = await fetch(`http://localhost:9090/api/jobs?${query}`);
-         const data = await response.json();
-         setJobs(data);
-      
-     } catch (error) {
-       console.log("failed to fetch jobs :",error);
-     }
-     finally {
-       setLoading(false);
-     }
+      try {
+        if (!chatBox) {
+          const response = await fetch(`http://localhost:8080/api/jobs?${query}`, {
+            method: 'GET', // Specify the method (GET, POST, etc.) if needed
+            headers: {
+              'Authorization': `Basic ${base64Credentials}`,
+              'Content-Type': 'application/json' // Optional: specify content type if needed
+            }
+          });
 
-  };
-  fetchJobs();}, [query]);
+          const data1 = await response.json();
+          setJobs(data1);
+        }
+
+        if (chatBox) {
+
+          console.log("textAreaValue", textAreaValue);
+
+          const response = await fetch("http://localhost:8080/api/queryJobs", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Basic ${base64Credentials}` // Add Basic Auth header
+            },
+            body: JSON.stringify({ text: textAreaValue })
+          });
+
+          const data2 = await response.json();
+          setJobs(data2);
+        }
+
+      } catch (error) {
+        console.log("failed to fetch jobs :", error);
+      }
+      finally {
+        setLoading(false);
+      }
+
+    };
+
+    fetchJobs();
+  }, [query, textAreaValue]);
 
   if (loading) {
-    return <p>Loading jobs...</p>;
+    return <Loading />;
   }
+
+  const toggle = () => {
+    setChatBox(!chatBox);
+  }
+
   return (
     <div className="job-listing-page">
 
       <div className="sidebar-container-filter">
-        <FilterComponent getQueryFromFilter={getQuery} />
+        {chatBox ? <ChatBox getTextQuery={textAreaQuery} /> : <FilterComponent getQueryFromFilter={getQuery} />}
+        <button type="button" onClick={toggle}>{chatBox ? "FilterBox" : "ChatBox"}</button>
       </div>
 
 

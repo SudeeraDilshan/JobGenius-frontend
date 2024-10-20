@@ -18,15 +18,15 @@ export const Navbar = (props) => {
         <span className="navbar-brand">JobGenius</span>
       </div>
 
-      {role == "student" ? (
+      {role == "jobseeker" ? (
         <ul className="navbar-center">
-          <li><Link to="/" className="navbar-link"  >Jobs</Link></li>
-          <li><Link to="/hire" className="navbar-link">Hire</Link></li>
+          <li><Link to="/home" className="navbar-link"  >Jobs</Link></li>
+          {/* <li><Link to="/hire" className="navbar-link">Hire</Link></li> */}
           <li>  <Link to="/opportunities" className="navbar-link">Opportunities</Link></li>
         </ul>) : 
         (
           // Conditionally render search bar based on current URL
-          location.pathname === "/" ? (
+          location.pathname === "/home" ? (
             <div className="search-bar">
               <input
                 type="text"
