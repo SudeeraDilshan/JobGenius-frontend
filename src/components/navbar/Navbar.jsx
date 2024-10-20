@@ -21,7 +21,7 @@ export const Navbar = (props) => {
       {role == "student" ? (
         <ul className="navbar-center">
           <li><Link to="/" className="navbar-link"  >Jobs</Link></li>
-          <li><Link to="/hire" className="navbar-link">Hire</Link></li>
+          {/* <li><Link to="/hire" className="navbar-link">Hire</Link></li> */}
           <li>  <Link to="/opportunities" className="navbar-link">Opportunities</Link></li>
         </ul>) : 
         (

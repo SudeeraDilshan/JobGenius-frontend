@@ -8,6 +8,7 @@ import JobPreviewPage from './pages/JobPreviewPage'
 import './App.css'
 import AdminPage from './pages/AdminPage'
 import {Navbar} from './components/Navbar/Navbar'
+import LoginSignup from './pages/LoginAndSignUpPage'
 
 const App = () => {
 
@@ -19,12 +20,13 @@ const App = () => {
         <Navbar role={role}/>
         <Routes>
           <Route path="/*" element={role=="student" ?<JobListingPage />:<AdminPage/>} />
-          <Route path="/hire" element={<HirePage />} />
+          {/* <Route path="/hire" element={<HirePage />} /> */}
           <Route path="/opportunities" element={<OpportunitiesPage />} />
           <Route path="/profile/*" element={<ProfilePage />} />
           <Route path="/job-preview/:jobId" element={<JobPreviewPage />} />
         </Routes>
       </BrowserRouter> 
+      {/* <LoginSignup /> */}
     </div>
   )
 }

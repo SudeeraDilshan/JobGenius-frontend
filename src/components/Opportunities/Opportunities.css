@@ -1,0 +1,23 @@
+.opportunity-container{
+    /* display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    margin: 0px auto;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    overflow-y: auto;
+    height: 100%; */
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    margin: 0px auto;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    overflow-y: auto;
+    height: 100%;
+}
