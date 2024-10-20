@@ -6,7 +6,7 @@ import { Routes, Route } from 'react-router-dom'
 import ViewJobsTable from '../components/ViewJobsTable/ViewJobsTable'
 import Loading from '../components/Loading/Loading'
 
-const AdminPage = () => {
+const AdminPage = ({company_name,base64Credentials}) => {
 
     const [jobs, setJobs] = useState([]); 
     const [loading, setLoading] = useState(true);
@@ -15,8 +15,17 @@ const AdminPage = () => {
       setLoading(true); 
       try {
 
-        const url = `http://localhost:9090/api/getJobsByCompany?company=${encodeURIComponent(company)}`;
-        const response = await fetch(url);
+        const url = `http://localhost:8080/api/getJobsByCompany?company=${encodeURIComponent(company_name)}`;
+
+        // Add authorization header using base64Credentials
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Basic ${base64Credentials}`,  // Include Authorization header
+                'Content-Type': 'application/json'  // Optional, in case you need to specify content-type
+            },
+        });
+        
     
         if (!response.ok) {
           throw new Error('Failed to fetch jobs');
@@ -40,7 +49,7 @@ const AdminPage = () => {
          
     useEffect(() => {
 
-      fetchJobs("BuildOps");
+      fetchJobs("Software Solutions");// hard coded company name for now
       }, []);
     
       if (loading) {
@@ -51,8 +60,8 @@ const AdminPage = () => {
         <div className='admin-container'>
             <AdminSideBar />
             <Routes>
-                <Route path='add-job' element={<AddJobForm fetch_jobs={fetchJobs}/>} />
-                <Route path='' element={<ViewJobsTable  Job_list={jobs} fetch_jobs={fetchJobs}/>} />
+                <Route path='add-job' element={<AddJobForm fetch_jobs={fetchJobs} base64Credentials={base64Credentials}/>} />
+                <Route path='' element={<ViewJobsTable  Job_list={jobs} fetch_jobs={fetchJobs} base64Credentials={base64Credentials} />} />
             </Routes>
         </div>
     )

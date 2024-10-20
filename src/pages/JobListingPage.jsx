@@ -5,7 +5,7 @@ import { JobCard } from '../components/jobcard/JobCard';
 import Loading from '../components/Loading/Loading';
 import { ChatBox } from '../components/ChatBox/ChatBox';
 
-const JobListingPage = () => {
+const JobListingPage = ({ base64Credentials }) => {
   const [jobs, setJobs] = useState([]);
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(true);
@@ -26,7 +26,14 @@ const JobListingPage = () => {
     const fetchJobs = async () => {
       try {
         if (!chatBox) {
-          const response = await fetch(`http://localhost:9090/api/jobs?${query}`);
+          const response = await fetch(`http://localhost:8080/api/jobs?${query}`, {
+            method: 'GET', // Specify the method (GET, POST, etc.) if needed
+            headers: {
+              'Authorization': `Basic ${base64Credentials}`,
+              'Content-Type': 'application/json' // Optional: specify content type if needed
+            }
+          });
+
           const data1 = await response.json();
           setJobs(data1);
         }
@@ -35,13 +42,15 @@ const JobListingPage = () => {
 
           console.log("textAreaValue", textAreaValue);
 
-          const response = await fetch("http://localhost:9090/api/queryJobs", {
+          const response = await fetch("http://localhost:8080/api/queryJobs", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              "Authorization": `Basic ${base64Credentials}` // Add Basic Auth header
             },
             body: JSON.stringify({ text: textAreaValue })
           });
+
           const data2 = await response.json();
           setJobs(data2);
         }
@@ -56,7 +65,7 @@ const JobListingPage = () => {
     };
 
     fetchJobs();
-  }, [query,textAreaValue]);
+  }, [query, textAreaValue]);
 
   if (loading) {
     return <Loading />;

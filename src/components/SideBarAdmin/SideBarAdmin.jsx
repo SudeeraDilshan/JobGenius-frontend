@@ -6,8 +6,8 @@ const SideBarAdmin = () => {
     return (
         <div className="sidebar">
         <ul>
-            <li><Link to="/"><button>View Jobs</button></Link></li>
-            <li><Link to="/add-job"><button>Add Job</button></Link></li>
+            <li><Link to="/home"><button>View Jobs</button></Link></li>
+            <li><Link to="/home/add-job"><button>Add Job</button></Link></li>
         </ul>
     </div>
     )

@@ -1,20 +1,32 @@
 import './ViewJobsTable.css';
 import React from 'react';
 
-const ViewJobsTable = ({ Job_list,fetch_jobs}) => {
+const ViewJobsTable = ({ Job_list, fetch_jobs,base64Credentials }) => {
     const deleteJob = async (id) => {
         try {
-            const url = `http://localhost:9090/api/jobs/${encodeURIComponent(id)}`;
+            // const url = `http://localhost:9090/api/jobs/${encodeURIComponent(id)}`;
+            // const response = await fetch(url, {
+            //     method: 'DELETE', 
+            // });
+
+            const url = `http://localhost:8080/api/jobs/${encodeURIComponent(id)}`;
+
+            // Add authorization header using base64Credentials
             const response = await fetch(url, {
-                method: 'DELETE', 
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Basic ${base64Credentials}`,  // Include Authorization header
+                    'Content-Type': 'application/json'  // Optional, specify content-type if needed
+                },
             });
-    
+
             if (!response.ok) {
                 throw new Error('Failed to delete the job');
             }
-    
+
             console.log(`Job with id ${id} deleted successfully`);
-            fetch_jobs("BuildOps"); 
+            
+            fetch_jobs("Software Solutions");// hardcode company name for now
         } catch (error) {
             console.error('Error deleting the job:', error);
         }
